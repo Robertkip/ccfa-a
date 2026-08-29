@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>(function(){try{var t=localStorage.getItem("ccaof.theme");if(t==="light")document.documentElement.setAttribute("data-theme","light");}catch(e){}})();</script>
 <title>Learning resources — CCAO-F Study Guide</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -10,6 +11,25 @@
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
+<header class="topnav">
+  <div class="topnav-in">
+    <a class="wordmark" href="index.html">CCAO-F Study Guide</a>
+    <nav class="topnav-links" aria-label="Primary">
+      <a href="index.html">Curriculum</a>
+      <a href="learn.html">Lessons</a>
+      <a href="exam.html">Practice</a>
+      <a href="resources.html">Resources</a>
+    </nav>
+    <div class="topnav-right">
+      <span class="certbadge">CCAO-F</span>
+      <a class="navcta" href="exam.html?paper=a30">Take a practice paper</a>
+      <button class="themetoggle" id="themetoggle" type="button" aria-label="Switch to light theme">
+        <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.4v2.4M12 19.2v2.4M4.6 4.6l1.7 1.7M17.7 17.7l1.7 1.7M2.4 12h2.4M19.2 12h2.4M4.6 19.4l1.7-1.7M17.7 6.3l1.7-1.7"/></svg>
+        <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 1 1 9.4 3.5a7 7 0 0 0 11.1 11.1Z"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
 <div class="shell">
   <aside class="side">
     <a class="brand" href="index.html"><span class="code">CCAO-F</span><span class="nm">Claude Certified Associate — Foundations</span></a>
@@ -130,5 +150,6 @@ document.getElementById("map").innerHTML = DOM_KEYS.map(function(k){
     '<a href="domain.html?d='+k+'">Drill this domain →</a></p></div>';
 }).join("");
 </script>
+<script src="assets/nav.js"></script>
 </body>
 </html>
