@@ -382,7 +382,7 @@ p.body a{color:var(--dropout);text-decoration-thickness:1px;text-underline-offse
 .mod{border-left-color:var(--dot,var(--dropout-soft))}
 
 @media (max-width:900px){
-  .topnav-in{gap:16px;padding:0 18px}
+  .topnav-in{gap:16px;padding:10px 18px;height:auto;flex-wrap:wrap;row-gap:10px}
   .topnav-links{order:3;flex-basis:100%}
   .certbadge{display:none}
 }
