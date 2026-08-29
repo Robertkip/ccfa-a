@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Practice paper — CCAO-F</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="shell">
+  <aside class="side">
+    <a class="brand" href="index.html"><span class="code">CCAO-F</span><span class="nm">Claude Certified Associate — Foundations</span></a>
+    <a class="side-cta" href="index.html">Back to curriculum</a>
+    <h3>Practice</h3>
+    <ul>
+      <li><a class="nav" href="exam.html?paper=a30">Practice Paper A · 30</a></li>
+      <li><a class="nav" href="exam.html?paper=b30">Practice Paper B · 30</a></li>
+      <li><a class="nav" href="exam.html?paper=c60">Mock Exam 1 · 60</a></li>
+      <li><a class="nav" href="exam.html?paper=d60">Mock Exam 2 · 60</a></li>
+    </ul>
+    <h3>Study</h3>
+    <ul>
+      <li><a class="nav" href="learn.html">All 30 lessons</a></li>
+    </ul>
+    <h3>Curriculum</h3>
+    <ul id="side-domains"></ul>
+    <h3>Look up</h3>
+    <ul><li><a class="nav" href="resources.html">Learning resources</a></li></ul>
+    <p class="foot">Independent study material. Not affiliated with Anthropic.</p>
+  </aside>
+
+  <main class="main">
+
+    <!-- INTRO -->
+    <section id="screen-intro">
+      <p class="eyebrow">Practice paper</p>
+      <h1 id="intro-name">—</h1>
+      <p class="lede" id="intro-blurb"></p>
+      <dl class="facts">
+        <div class="fact"><dt>Items</dt><dd id="f-items">—</dd></div>
+        <div class="fact"><dt>Time limit</dt><dd id="f-time">—</dd></div>
+        <div class="fact"><dt>Pass mark</dt><dd id="f-pass">—</dd></div>
+        <div class="fact"><dt>Format</dt><dd id="f-type">—</dd></div>
+      </dl>
+      <h3 class="lab">Domain mix on this paper</h3>
+      <div id="intro-mix" style="margin-bottom:30px"></div>
+      <button class="btn" id="begin">Start the paper</button>
+      <button class="btn ghost sm" id="begin-untimed" style="margin-left:8px">Start without a timer</button>
+      <p class="note">Multiple-response items state how many answers to select and are scored all-or-nothing, as on the real exam. Nothing is scored until you submit.</p>
+    </section>
+
+    <!-- EXAM -->
+    <section id="screen-exam" class="hidden">
+      <div class="exhead">
+        <span class="q-domain">In progress</span>
+        <div class="hud">
+          <div><span class="lab">Answered</span><b id="hud-count">0/0</b></div>
+          <div id="hud-timer-wrap"><span class="lab">Time left</span><b id="hud-timer">—</b></div>
+        </div>
+      </div>
+      <div class="exam">
+        <aside class="rail">
+          <div class="rail-lab">Answer sheet</div>
+          <div class="rail-grid" id="rail"></div>
+        </aside>
+        <div class="stage">
+          <div class="q-head">
+            <span class="q-domain" id="q-domain"></span>
+            <span class="q-num" id="q-num"></span>
+          </div>
+          <h2 class="q-text" id="q-text"></h2>
+          <p class="q-instruct" id="q-instruct"></p>
+          <ul class="opts" id="opts"></ul>
+          <div class="nav">
+            <button class="btn ghost sm" id="prev">Back</button>
+            <button class="btn sm" id="next">Next</button>
+            <button class="flagbtn" id="flag">Flag for review</button>
+            <span class="spacer"></span>
+            <button class="btn ghost sm" id="toreview">Review &amp; finish</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRE-SUBMIT REVIEW -->
+    <section id="screen-review" class="hidden">
+      <p class="eyebrow" id="rev-meta"></p>
+      <h1>Review before you submit</h1>
+      <p class="lede" id="rev-lede"></p>
+      <ul class="summary-list" id="rev-list"></ul>
+      <button class="btn" id="submit">Submit and score</button>
+      <button class="btn ghost sm" id="backtoexam" style="margin-left:8px">Keep working</button>
+    </section>
+
+    <!-- SCORE REPORT -->
+    <section id="screen-report" class="hidden">
+      <p class="eyebrow">Score report · practice result, not an official score</p>
+      <div id="verdict-slot"></div>
+      <h1 id="report-head"></h1>
+      <div class="scalewrap">
+        <p class="bigscore"><span id="scaled">—</span><small id="rawline"></small></p>
+        <div class="scale">
+          <i id="scalefill" style="width:0%"></i>
+          <div class="cut" style="left:68.9%"><span>720 PASS</span></div>
+        </div>
+        <div class="scale-ends"><span>100</span><span>1000</span></div>
+      </div>
+      <h3 class="lab">Percent correct by domain</h3>
+      <div id="domreport"></div>
+      <p class="note" id="next-step"></p>
+      <div class="rev">
+        <h3 class="lab">Every item, with reasoning</h3>
+        <div id="fullreview"></div>
+      </div>
+      <button class="btn" id="retake" style="margin-top:32px">Retake this paper</button>
+      <a class="btn ghost sm" href="index.html" style="margin-left:8px">Back to curriculum</a>
+    </section>
+
+  </main>
+</div>
+
+<script src="assets/data.js"></script>
+<script src="assets/bank-d1.js"></script>
+<script src="assets/bank-d2.js"></script>
+<script src="assets/bank-d3.js"></script>
+<script src="assets/bank-d4.js"></script>
+<script src="assets/bank-d5.js"></script>
+<script src="assets/bank-d6.js"></script>
+<script src="assets/bank-d7.js"></script>
+<script>
+document.getElementById("side-domains").innerHTML = DOM_KEYS.map(function(k){
+  return '<li><a class="nav" href="domain.html?d='+k+'"><span class="idx">'+DOMAINS[k].i+'</span>'+DOMAINS[k].n+'</a></li>';
+}).join("");
+</script>
+<script src="assets/exam.js"></script>
+</body>
+</html>

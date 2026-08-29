@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Domain — CCAO-F Study Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="shell">
+  <aside class="side">
+    <a class="brand" href="index.html"><span class="code">CCAO-F</span><span class="nm">Claude Certified Associate — Foundations</span></a>
+    <a class="side-cta" id="side-cta" href="learn.html">Lessons for this domain</a>
+    <h3>Study</h3>
+    <ul>
+      <li><a class="nav" href="learn.html">All 30 lessons</a></li>
+    </ul>
+    <h3>Curriculum</h3>
+    <ul id="side-domains"></ul>
+    <h3>Practice</h3>
+    <ul>
+      <li><a class="nav" href="exam.html?paper=a30">Practice Paper A · 30</a></li>
+      <li><a class="nav" href="exam.html?paper=b30">Practice Paper B · 30</a></li>
+      <li><a class="nav" href="exam.html?paper=c60">Mock Exam 1 · 60</a></li>
+      <li><a class="nav" href="exam.html?paper=d60">Mock Exam 2 · 60</a></li>
+    </ul>
+    <h3>Look up</h3>
+    <ul><li><a class="nav" href="resources.html">Learning resources</a></li></ul>
+    <p class="foot">Independent study material. Not affiliated with Anthropic.</p>
+  </aside>
+
+  <main class="main">
+    <p class="eyebrow" id="crumb">Domain</p>
+    <h1 id="dtitle">—</h1>
+    <p class="lede" id="ddesc"></p>
+
+    <dl class="facts">
+      <div class="fact"><dt>Weight</dt><dd id="f-w">—</dd></div>
+      <div class="fact"><dt>Lessons</dt><dd id="f-o">—</dd></div>
+      <div class="fact"><dt>Items on the real exam</dt><dd id="f-e">—</dd></div>
+      <div class="fact"><dt>Items in this bank</dt><dd id="f-b">—</dd></div>
+    </dl>
+
+    <h3 class="lab">Task statements from the blueprint</h3>
+    <p class="body" style="margin:0 0 14px">Each one has its own lesson. Follow a link to read the teaching, the exam traps and the exercise for that statement.</p>
+    <ul class="objs" id="objs"></ul>
+    <p style="margin:18px 0 0"><a class="btn sm" id="dlearn" href="learn.html">Study these lessons</a></p>
+
+    <h3 class="lab" style="margin-top:44px">What this domain is really testing</h3>
+    <div id="notes"></div>
+
+    <h2 class="sec">Drill this domain</h2>
+    <p class="body">Every item in the bank for this domain, one at a time, with the answer and rationale revealed as you go. No clock and no score — this is for learning, not measurement.</p>
+    <div id="drill"></div>
+  </main>
+</div>
+
+<script src="assets/data.js"></script>
+<script src="assets/bank-d1.js"></script>
+<script src="assets/bank-d2.js"></script>
+<script src="assets/bank-d3.js"></script>
+<script src="assets/bank-d4.js"></script>
+<script src="assets/bank-d5.js"></script>
+<script src="assets/bank-d6.js"></script>
+<script src="assets/bank-d7.js"></script>
+<script>
+var NOTES = {
+ d1:"Almost every wrong answer in this domain is a version of the same mistake: responding to a weak output by asking for it to be <i>better</i> rather than working out what was missing. The exam rewards naming the specific gap — audience, purpose, format, source material — and it rewards knowing that a stronger model does not rescue an underspecified prompt. Expect scenarios where the tempting answer is to escalate the model or add adjectives, and the correct answer is to supply information.",
+ d2:"The heaviest domain, and the one where careless reading costs most. Two ideas carry most of the items: confidence in an output tells you nothing about its accuracy, and omission is an accuracy failure just as much as a false statement. Watch for distractors that treat self-checking as verification, that treat plausibility as evidence, or that fix a problem with a disclaimer instead of a correction.",
+ d3:"Selection questions are fit decisions, never rankings. The examiner is testing whether you can identify which of cost, speed and quality is actually binding for the described workload, and whether you know what a Project, research mode and an artifact are each for. Any answer of the form \"always use the most capable model\" is wrong by construction.",
+ d4:"This domain is about designing the human checkpoint and the measurement, not about the technology. Strong answers name a control, a baseline or a success criterion. Weak answers either automate a consequential decision outright or refuse the whole idea. Expect at least one scenario where the correct response is that the process should be fixed before it is automated.",
+ d5:"The distinction that carries this domain: instructions govern behaviour that must apply every time, knowledge supplies material to consult. Almost everything else follows — why superseded documents must be removed, why a bloated instruction set produces erratic results, and why a connector's scope and the Project's membership are one decision rather than two.",
+ d6:"Test items here reward two habits: classifying the data before starting the task, and separating who drafts from who decides. Distractors commonly offer a fix that comes too late (delete the chat afterwards, add a disclaimer) or a fix that addresses the wrong thing (use a smaller model). The strongest general test is whether you would be willing to explain the use to the people it affects.",
+ d7:"Diagnosis before correction. The expected order is input, then prompt, then task fit — cheapest and most likely first. The other half of the domain is optimisation: turning a fix into a shared default, removing a step rather than speeding it up, and measuring the same thing before and after so you know whether anything improved."
+};
+
+var params = new URLSearchParams(location.search);
+var k = params.get("d");
+if(!DOMAINS[k]) k = "d1";
+var d = DOMAINS[k];
+
+document.getElementById("side-domains").innerHTML = DOM_KEYS.map(function(x){
+  return '<li><a class="nav '+(x===k?"on":"")+'" href="domain.html?d='+x+'"><span class="idx">'+DOMAINS[x].i+'</span>'+DOMAINS[x].n+'</a></li>';
+}).join("");
+
+document.title = d.n + " — CCAO-F";
+document.getElementById("crumb").textContent = "Domain " + d.i;
+document.getElementById("dtitle").textContent = d.n;
+document.getElementById("ddesc").textContent = d.d;
+document.getElementById("f-w").innerHTML = d.w + "%";
+document.getElementById("f-o").innerHTML = d.o.length;
+document.getElementById("f-e").innerHTML = "~" + Math.round(d.w/100*60) + " <small>of 60</small>";
+document.getElementById("f-b").innerHTML = (BANK[k]||[]).length;
+var dnum = DOM_KEYS.indexOf(k) + 1;
+document.getElementById("objs").innerHTML = d.o.map(function(o,i){
+  return '<li><span><a href="lesson.html?t='+dnum+'.'+(i+1)+'" style="color:var(--dropout)">'+o+'</a></span></li>';
+}).join("");
+document.getElementById("dlearn").href = "learn.html#" + k;
+document.getElementById("side-cta").href = "learn.html#" + k;
+document.getElementById("notes").innerHTML = '<p class="body">' + NOTES[k] + '</p>';
+
+/* ---- drill ---- */
+var pool = BANK[k] || [];
+var at = 0, revealed = false, picked = [];
+
+function draw(){
+  var q = pool[at];
+  if(!q){ document.getElementById("drill").innerHTML = "<p class='body'>No items available.</p>"; return; }
+  var opts = q.o.map(function(o,i){
+    var chosen = picked.indexOf(i) > -1;
+    if(revealed){
+      var cls = "rev-opt" + (o.c ? " is-correct" : (chosen ? " is-chosen-wrong" : ""));
+      return '<div class="'+cls+'"><b>'+"ABCDE"[i]+'</b><span>'+o.t+
+        ' <span class="rev-tag">'+(o.c?"✓":(chosen?"✗":""))+'</span><span class="rev-why">'+o.w+'</span></span></div>';
+    }
+    return '<li class="opt '+(chosen?"picked":"")+'"><button data-pick="'+i+'">'+
+      '<span class="bubble"></span><span class="opt-letter">'+"ABCDE"[i]+'</span><span>'+o.t+'</span></button></li>';
+  }).join("");
+
+  document.getElementById("drill").innerHTML =
+    '<div class="q-head"><span class="q-domain">'+d.n+'</span><span class="q-num">Item '+(at+1)+' of '+pool.length+'</span></div>'+
+    '<h2 class="q-text">'+q.q+'</h2>'+
+    '<p class="q-instruct'+(q.pick>1?" multi":"")+'">'+(q.pick===1?"Select one response.":"Select "+q.pick+" responses.")+'</p>'+
+    (revealed ? '<div style="max-width:72ch;margin-bottom:14px">'+opts+'</div><p class="rev-key"><b>Key idea.</b> '+q.key+'</p>'
+              : '<ul class="opts">'+opts+'</ul>')+
+    '<div class="nav" style="margin-top:20px">'+
+      '<button class="btn ghost sm" id="d-prev" '+(at===0?"disabled":"")+'>Back</button>'+
+      '<button class="btn sm" id="d-reveal">'+(revealed?"Hide answer":"Show answer")+'</button>'+
+      '<button class="btn ghost sm" id="d-next" '+(at===pool.length-1?"disabled":"")+'>Next item</button>'+
+    '</div>';
+
+  var dr = document.getElementById("drill");
+  dr.querySelectorAll("[data-pick]").forEach(function(b){
+    b.onclick = function(){
+      var i = +b.dataset.pick, at2 = picked.indexOf(i);
+      if(q.pick === 1){ picked = (picked[0]===i) ? [] : [i]; }
+      else if(at2 > -1){ picked.splice(at2,1); }
+      else if(picked.length < q.pick){ picked.push(i); }
+      else { picked.shift(); picked.push(i); }
+      draw();
+    };
+  });
+  document.getElementById("d-reveal").onclick = function(){ revealed = !revealed; draw(); };
+  document.getElementById("d-prev").onclick = function(){ if(at>0){at--;revealed=false;picked=[];draw();} };
+  document.getElementById("d-next").onclick = function(){ if(at<pool.length-1){at++;revealed=false;picked=[];draw();} };
+}
+draw();
+</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson — CCAO-F Study Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="shell">
+  <aside class="side">
+    <a class="brand" href="index.html"><span class="code">CCAO-F</span><span class="nm">Claude Certified Associate — Foundations</span></a>
+    <a class="side-cta" href="learn.html">All 30 lessons</a>
+    <div id="side-progress"></div>
+    <h3>Curriculum</h3>
+    <ul id="side-domains"></ul>
+    <h3>Practice</h3>
+    <ul>
+      <li><a class="nav" href="exam.html?paper=a30">Practice Paper A · 30</a></li>
+      <li><a class="nav" href="exam.html?paper=b30">Practice Paper B · 30</a></li>
+      <li><a class="nav" href="exam.html?paper=c60">Mock Exam 1 · 60</a></li>
+      <li><a class="nav" href="exam.html?paper=d60">Mock Exam 2 · 60</a></li>
+    </ul>
+    <h3>Look up</h3>
+    <ul><li><a class="nav" href="resources.html">Learning resources</a></li></ul>
+    <p class="foot">Independent study material. Not affiliated with Anthropic.</p>
+  </aside>
+
+  <main class="main">
+    <p class="crumbs" id="crumbs"></p>
+    <div class="lesson-head">
+      <div>
+        <p class="eyebrow" id="eyebrow"></p>
+        <h1 id="ltitle">—</h1>
+      </div>
+      <button class="markbtn" id="mark"><span class="box">✓</span><span id="mark-t">Mark complete</span></button>
+    </div>
+    <p class="lede" id="lsum"></p>
+
+    <dl class="facts">
+      <div class="fact"><dt>Domain weight</dt><dd id="f-w">—</dd></div>
+      <div class="fact"><dt>Lesson</dt><dd id="f-pos">—</dd></div>
+      <div class="fact"><dt>Read time</dt><dd id="f-min">—</dd></div>
+      <div class="fact"><dt>Exercise</dt><dd id="f-ex">—</dd></div>
+      <div class="fact"><dt>Domain bank</dt><dd id="f-bank">—</dd></div>
+    </dl>
+
+    <div id="body"></div>
+
+    <p class="note"><b>Not affiliated with Anthropic.</b> This lesson is independent study material written against the published CCAO-F blueprint. Product behaviour, model specifications and exam policies change — confirm anything specific against the official sources linked above before you rely on it.</p>
+  </main>
+</div>
+
+<script src="assets/data.js"></script>
+<script src="assets/curriculum.js"></script>
+<script src="assets/lessons-d1.js"></script>
+<script src="assets/lessons-d2.js"></script>
+<script src="assets/lessons-d3.js"></script>
+<script src="assets/lessons-d4.js"></script>
+<script src="assets/lessons-d5.js"></script>
+<script src="assets/lessons-d6.js"></script>
+<script src="assets/lessons-d7.js"></script>
+<script src="assets/bank-d1.js"></script>
+<script src="assets/bank-d2.js"></script>
+<script src="assets/bank-d3.js"></script>
+<script src="assets/bank-d4.js"></script>
+<script src="assets/bank-d5.js"></script>
+<script src="assets/bank-d6.js"></script>
+<script src="assets/bank-d7.js"></script>
+<script src="assets/learn.js"></script>
+<script>
+var n = new URLSearchParams(location.search).get("t");
+if (!LESSONS[n]) n = TASK_KEYS[0];
+var L = LESSONS[n], k = taskDomain(n), d = DOMAINS[k], title = taskTitle(n);
+
+document.title = n + " " + title + " — CCAO-F";
+document.getElementById("crumbs").innerHTML =
+  '<a href="learn.html">Learn</a><span>/</span><a href="learn.html#' + k + '">' + d.n + '</a><span>/</span>' + n;
+document.getElementById("eyebrow").textContent = "Domain " + d.i + " · Task " + n;
+document.getElementById("ltitle").textContent = title;
+document.getElementById("lsum").textContent = L.sum;
+
+document.getElementById("f-w").innerHTML = d.w + "%";
+document.getElementById("f-pos").innerHTML = (TASK_KEYS.indexOf(n) + 1) + " <small>of 30</small>";
+document.getElementById("f-min").innerHTML = L.mins + " <small>min</small>";
+document.getElementById("f-ex").innerHTML = L.ex.mins + " <small>min</small>";
+document.getElementById("f-bank").innerHTML = (BANK[k] || []).length + " <small>items</small>";
+
+document.getElementById("body").innerHTML = renderLessonBody(n, L);
+renderCheck(document.getElementById("check-mount"), L.check);
+renderLearnSide(n);
+
+/* mark complete */
+var mark = document.getElementById("mark"), markT = document.getElementById("mark-t");
+function paintMark() {
+  var done = isDone(n);
+  mark.classList.toggle("on", done);
+  markT.textContent = done ? "Completed" : "Mark complete";
+  mark.setAttribute("aria-pressed", done ? "true" : "false");
+}
+mark.onclick = function () { toggleDone(n); paintMark(); renderLearnSide(n); };
+paintMark();
+</script>
+</body>
+</html>

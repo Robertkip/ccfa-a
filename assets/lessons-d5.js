@@ -1,0 +1,290 @@
+/* Domain 5 — Configuration and Knowledge Management (4 lessons) */
+
+LESSONS["5.1"] = {
+mins: 25,
+sum: "The distinction that carries this whole domain: instructions govern behaviour that must apply every time, knowledge supplies material to consult. Almost everything else follows from it.",
+know: [
+{h:"One distinction, everything else follows",
+ p:["A Claude Project has two configuration surfaces, and putting the right thing in each is the central skill of Domain 5.",
+    "<b>Custom instructions</b> are standing directions that apply to every conversation in the Project. They govern <i>how</i> Claude behaves: the role it takes, the tone and register, the default format, the standards it applies, the things it must always do and must never do.",
+    "<b>Project knowledge</b> is uploaded material that conversations in the Project can draw on. It supplies <i>what</i> Claude works from: reference documents, policies, past examples, product specifications, style guides as artefacts to consult.",
+    "The test is a single question. <b>Must this apply every time, or is it something to consult when relevant?</b> \"Always write in British English, second person, under 400 words\" applies every time — instructions. \"Our 60-page brand guidelines\" is material to consult — knowledge. Note that the same subject can appear in both: the operative rules from the guidelines go in instructions, the full document goes in knowledge."]},
+{h:"Symptoms of getting it backwards",
+ p:["Both errors produce recognisable failures, and exam scenarios describe the symptom rather than naming the mistake.",
+    "<b>Behaviour rules buried in knowledge.</b> A 60-page style guide uploaded as knowledge with no instruction saying what to do with it produces inconsistent adherence: sometimes the tone is right, sometimes not, with no pattern. The material is available but nothing makes it binding. The fix is to lift the operative rules into instructions and leave the full document as knowledge.",
+    "<b>Reference material pasted into instructions.</b> Instructions bloated with paragraphs of background produce erratic behaviour, because the genuinely binding rules are diluted among material that is only occasionally relevant. The fix is to move the reference content to knowledge and reduce instructions to the rules.",
+    "The general principle: instructions should be short, imperative and always true. If a line in your instructions is only relevant to some conversations, it probably belongs in knowledge."]},
+{h:"Scoping a Project",
+ p:["A Project should have one coherent purpose, because instructions that must serve two different kinds of work end up serving neither.",
+    "Good scopes: \"customer support responses,\" \"quarterly board reporting,\" \"the Meridian product documentation,\" \"the marketing team's content.\" Poor scopes: \"work\" — instructions become so general they say nothing — and \"the Tuesday board paper\" — a scope so narrow that setup never repays itself.",
+    "When two kinds of work share source material but need different behaviour, that is a signal for two Projects rather than one. Duplicating a knowledge document across two Projects is a smaller cost than instructions that contradict themselves.",
+    "Membership is part of scope. A Project shared with a team gives everyone in it the same instructions and the same access to its knowledge and anything it is connected to. Deciding who is in it is a data-access decision, not an administrative one — which is where Domain 5 meets Domain 6."]},
+{h:"Setting one up well",
+ p:["<b>Start from the friction.</b> Look at what you re-supply in every conversation. That list is your first draft of instructions and knowledge, and it is more reliable than trying to imagine the configuration from scratch.",
+    "<b>Write instructions as directions, not description.</b> \"You are supporting the claims team. Write in plain English at reading age 12. Always cite the policy clause. Never state a settlement figure.\" Imperative, specific, testable.",
+    "<b>Curate knowledge; do not dump it.</b> Upload the documents the work actually needs, current versions only. More documents is not more capability — it dilutes and it makes contradictions likelier.",
+    "<b>Say how to use the knowledge.</b> An instruction like \"answer from the uploaded policy documents; if they do not cover a question, say so rather than inferring\" is what turns available material into reliable behaviour, and it doubles as a Domain 2 hallucination control.",
+    "<b>Test before relying on it.</b> Run three or four real tasks and check that the standards actually held. A configuration nobody tested is a set of intentions."]}
+],
+table: {cap:"Instructions or knowledge",
+ head:["Content","Goes in","Why"],
+ rows:[
+ ["Tone, register, reading level","Instructions","Must apply to every output"],
+ ["Default output format and length","Instructions","Applies every time"],
+ ["Things never to do (no figures, no advice)","Instructions","A standing prohibition"],
+ ["The operative rules from a style guide","Instructions","Binding behaviour"],
+ ["The full style guide document","Knowledge","Material to consult"],
+ ["Product specifications, policies, past examples","Knowledge","Referenced when relevant"],
+ ["How to use the uploaded material","Instructions","Turns available material into reliable behaviour"]]},
+keyc: "Ask of every configuration item: must this apply <i>every time</i>, or is it something to consult <i>when relevant</i>? Every-time goes in instructions; when-relevant goes in knowledge. Almost every Domain 5 item resolves to this question.",
+traps: [
+ {t:"Uploading a standards document and expecting it to be followed",
+  p:"The classic symptom is inconsistent adherence with no pattern. Material in knowledge is available, not binding. The fix lifts the operative rules into instructions."},
+ {t:"Instructions stuffed with background",
+  p:"Long instructions containing reference content produce erratic behaviour because the real rules are diluted. The fix moves reference material to knowledge."},
+ {t:"One Project for unlike work",
+  p:"When a scenario describes instructions that must serve two different kinds of task, the answer is usually two Projects, even at the cost of duplicating a knowledge document."}
+],
+check: {
+ q: "A legal operations team has a Project containing 40 uploaded documents including their contract playbook, and instructions that read: \"Help the legal ops team with contract work. Refer to the playbook.\" Outputs sometimes follow the playbook's escalation thresholds and sometimes do not. What is the best fix?",
+ o: [
+ {t:"Upload the playbook a second time in a different format to improve retrieval.", c:false, w:"Duplicates material without making anything binding, and adds to the dilution."},
+ {t:"Lift the playbook's operative rules — the escalation thresholds and the mandatory clauses — into the instructions as explicit standing directions, keep the full playbook in knowledge, and remove documents the work does not use.", c:true, w:"Makes the rules binding rather than merely available, keeps the full document consultable, and reduces dilution from unused material."},
+ {t:"Move to a more capable model so the playbook is applied more reliably.", c:false, w:"Inconsistent application of an unstated rule is a configuration problem; no tier makes available material binding."},
+ {t:"Instruct users to paste the relevant playbook section into each conversation.", c:false, w:"Reintroduces exactly the per-conversation friction the Project exists to remove, and relies on each user remembering."}],
+ key: "Inconsistent adherence with no discernible pattern is the signature of behaviour rules sitting in knowledge instead of instructions."},
+ex: {
+ mins: 30,
+ title: "Configure one Project properly and test it",
+ obj: ["Apply the every-time versus when-relevant test to real content",
+       "Write instructions as imperative directions",
+       "Verify the configuration rather than assuming it works"],
+ steps: [
+ {s:"Pick recurring work and list everything you currently re-supply in each conversation.", why:"The friction list is a more accurate configuration draft than anything you would design in the abstract.", res:"A list mixing standing rules and reference material."},
+ {s:"Sort the list into two columns using the every-time test. Be strict.", why:"Items you cannot place are usually rules hiding inside documents — split them.", res:"A short instruction list and a short knowledge list."},
+ {s:"Write the instructions as imperative directions, and keep them short. Include how to use the knowledge and what to do when it does not cover something.", why:"The 'say so rather than inferring' line is a Domain 2 control living in Domain 5 configuration.", res:"Instructions that fit on a screen."},
+ {s:"Upload only the current versions of the documents the work genuinely needs.", why:"Volume dilutes and invites contradictions between superseded and current material.", res:"A curated knowledge base, smaller than you expected."},
+ {s:"Run four real tasks through it and check specifically whether each standard held.", why:"Testing turns a set of intentions into a verified configuration.", res:"One or two instructions that need sharpening."},
+ {s:"Deliberately misplace one rule — move it from instructions into a knowledge document — and observe the inconsistency.", why:"Seeing the failure mode once makes the diagnostic instant on the exam and at work.", res:"Direct experience of available-but-not-binding."}]},
+src: [
+ {t:"Claude Help Center — Projects and custom instructions", u:"https://support.claude.com"},
+ {t:"Anthropic Academy", u:"https://anthropic.skilljar.com"},
+ {t:"Prompt engineering — system prompts", u:"https://docs.claude.com/en/docs/build-with-claude/prompt-engineering/system-prompts"}]
+};
+
+LESSONS["5.2"] = {
+mins: 25,
+sum: "Curating uploaded knowledge and connecting live sources. What to include, what to remove, and why a connector's scope and a Project's membership are one decision.",
+know: [
+{h:"Curate rather than accumulate",
+ p:["The instinct with a knowledge base is to include everything that might be relevant. It is the wrong instinct and it degrades quality in three specific ways.",
+    "<b>Superseded documents contradict current ones.</b> If both the 2024 and 2026 policies are present and nothing says which governs, outputs will sometimes cite the old one — and being right most of the time is the worst failure mode, because it defeats spot-checking.",
+    "<b>Volume dilutes.</b> A large corpus of marginally relevant material makes the genuinely relevant document harder to draw on reliably.",
+    "<b>Scope creep.</b> Documents added for one purpose stay for all purposes, and eventually the Project's knowledge no longer reflects any coherent scope.",
+    "So the standards are: current versions only, relevant to the Project's stated scope, one authoritative version per topic, and everything removed the moment it is superseded. Removal is the maintenance action people never do, and it is the one that matters most."]},
+{h:"What makes a document work as knowledge",
+ p:["Some material serves much better than others. Text-based and machine-readable beats scanned images, which may not be usable at all. Structure with headings and sections beats an undifferentiated wall of text. Self-contained beats a document that only makes sense alongside three others you did not upload.",
+    "Watch for documents that carry implicit context — an internal memo that assumes you know which project \"Phase 2\" refers to will produce confidently wrong answers about Phase 2. Either upload the context or add an instruction that names it.",
+    "Dated content should say its date and status prominently. \"Q1 2026 pricing, superseded from 1 July\" inside the document is far more reliable than remembering that the filename encodes it.",
+    "And check what actually arrived. A spreadsheet whose structure was lost, a PDF that came through as an image, a document truncated on upload — all produce the same puzzling symptom of Claude apparently ignoring material that is right there. It is the first thing to check when knowledge appears not to be working."]},
+{h:"Connectors: live sources, wider consequences",
+ p:["Connectors link Claude to systems you already use — Google Drive, Gmail, Calendar and others — so it can draw on live material instead of static uploads. The trade is currency for control.",
+    "<b>When a connector is right:</b> the material changes often enough that uploads would go stale; the relevant set is too large or too dynamic to curate; the work genuinely needs what is in the system today.",
+    "<b>When an upload is right:</b> the material is stable; you need a fixed, known version rather than whatever is current; or the connected system contains far more than this work should reach.",
+    "The critical property is <b>scope</b>. A connector grants access to some defined set of material, and everything in that scope is reachable. A broadly scoped Drive connector may reach documents nobody considered when it was set up, including material the Project's members should not see.",
+    "And in a shared Project, that access is inherited. <b>Scope and membership are one decision.</b> Adding a person to a Project with a connected source grants them the reach of that source through Claude. Exam scenarios treat those as separable at your peril."]},
+{h:"Reviewing what is connected",
+ p:["Connections accumulate. Someone sets one up for a purpose, the purpose ends, the connection remains — and its scope was set for the original need, not the current one.",
+    "A periodic review asks: is this connection still needed, is its scope still the minimum required, and has the Project's membership changed since it was granted? The third question is the one that catches the real problem, because membership changes silently relative to configuration.",
+    "The principle to apply is least access: connect the narrowest scope that does the job. A specific folder rather than the whole drive; a label rather than the whole mailbox. Narrowing scope also improves quality, because a smaller, more relevant set produces better grounding — the governance move and the quality move point the same way here, which is worth remembering.",
+    "Before connecting a source containing personal, confidential or regulated data, the question is whether your organisation's policy permits it. That is Domain 6, and the answer is a policy answer, not a technical one."]}
+],
+table: {cap:"Upload or connect",
+ head:["Situation","Choose","Why"],
+ rows:[
+ ["Material changes weekly","Connector","Uploads go stale and nobody re-uploads"],
+ ["You need a fixed, known version","Upload","A live source can change under you"],
+ ["The source system holds far more than this work needs","Upload, or a narrow connector scope","Least access; less dilution"],
+ ["The relevant set is large and dynamic","Connector","Curating it manually will not be sustained"],
+ ["The Project is shared with people outside the data's audience","Neither, until membership is resolved","Access is inherited by every member"]]},
+keyc: "A connector's scope and a shared Project's membership are one decision, not two. Everyone with access to the Project inherits the reach of everything connected to it — and membership changes silently relative to configuration.",
+traps: [
+ {t:"Leaving superseded documents in place",
+  p:"The signature symptom is outputs that cite the old policy some of the time. Being right most of the time is worse than being consistently wrong, because it survives spot-checking."},
+ {t:"Broad connector scope for convenience",
+  p:"Connecting an entire drive 'so nothing is missing' expands exposure and dilutes relevance. The strong answer connects the narrowest scope that does the job."},
+ {t:"Treating adding a member as an administrative act",
+  p:"In a Project with connected sources, adding a member grants data reach. Options that add people without considering what the Project can see are wrong."}
+],
+check: {
+ q: "A shared Project used by a 12-person marketing team has a connector to the company Google Drive at organisation-wide scope, added months ago so campaign briefs would always be current. Someone notices Claude referencing figures from an unreleased financial forecast. What is the correct assessment?",
+ o: [
+ {t:"A model error — it should not surface financial documents in a marketing Project.", c:false, w:"The model surfaced material the connector's scope made available. It behaved as configured."},
+ {t:"The connector's scope grants the whole team reach into everything in the Drive through this Project; scope should be narrowed to the campaign folders, and what was already exposed needs assessing.", c:true, w:"Correctly locates the cause in scope and inherited access, applies least access, and recognises that exposure that has already occurred is its own issue."},
+ {t:"Add an instruction telling Claude not to reference financial documents.", c:false, w:"An instruction is not an access control. The material remains reachable and the instruction can fail or be overridden by a user."},
+ {t:"Remove the connector and revert to uploading campaign briefs manually.", c:false, w:"Solves it by giving up the currency that justified the connector, when narrowing scope preserves both."}],
+ key: "An instruction telling Claude not to look at something is not an access control. If material should not be reachable, change the scope."},
+ex: {
+ mins: 25,
+ title: "Audit one knowledge base and one connection",
+ obj: ["Practise removal, which is the maintenance action nobody does",
+       "Check what actually arrived on upload",
+       "Apply least access to a real connection"],
+ steps: [
+ {s:"Open a Project you use and list every knowledge document with its date and last known status.", why:"Listing them forces you to notice the ones nobody has looked at since upload.", res:"Usually at least one superseded or orphaned document."},
+ {s:"Remove everything superseded, out of scope, or duplicated. Keep one authoritative version per topic.", why:"Removal is the highest-value maintenance action and the least performed.", res:"A smaller, cleaner knowledge base."},
+ {s:"Ask a question whose answer sits in a table or a chart inside an uploaded document, and check the answer is right.", why:"This is the fastest way to discover that a spreadsheet or scanned PDF did not arrive usably.", res:"Confirmation, or a document you need to re-upload as text."},
+ {s:"List every connector on the Project, its scope, and who has access to the Project.", why:"Seeing scope and membership on one page is what makes the inherited-access point concrete.", res:"A picture that is often wider than expected."},
+ {s:"Narrow one connector to the minimum scope that still does the job, then re-run a real task.", why:"Narrowing usually improves grounding as well as exposure, which makes it an easy change to justify.", res:"Same or better output, less reach."},
+ {s:"Note who joined the Project since the connector was configured.", why:"Membership changes silently relative to configuration, which is the failure this exercise is designed to surface.", res:"Either reassurance or an access review to run."}]},
+src: [
+ {t:"Claude Help Center — connectors, privacy and data handling", u:"https://support.claude.com"},
+ {t:"Anthropic usage policy", u:"https://www.anthropic.com/legal/aup"},
+ {t:"Anthropic Academy", u:"https://anthropic.skilljar.com"}]
+};
+
+LESSONS["5.3"] = {
+mins: 20,
+sum: "Writing standing instructions that actually change behaviour: specific, testable, prioritised, and short enough that every line still counts.",
+know: [
+{h:"Directions, not description",
+ p:["Weak instructions describe an aspiration. Strong instructions issue a direction that could be checked.",
+    "<span class=\"exl\">Weak</span> \"You are a helpful assistant for our customer support team. Be professional and accurate, and try to be concise.\"",
+    "<span class=\"exl\">Strong</span> \"You draft first-response replies for the customer support team. Write in plain English, second person, under 150 words. Always name the specific policy that applies and cite its clause. Never state a refund amount or commit to a timeline. If the customer's issue is not covered by the uploaded policies, say so and route to a human rather than inferring an answer.\"",
+    "The difference is testability. Every sentence in the strong version can be checked against an output: was it under 150 words, was a clause cited, was a figure stated. \"Be professional\" cannot be checked, so it cannot be relied on and it cannot be debugged.",
+    "The habit to build: after writing an instruction, ask how you would tell whether it had been followed. If you cannot answer, rewrite it."]},
+{h:"What belongs in instructions",
+ p:["A useful set covers six things, roughly in this order.",
+    "<b>Role and scope</b> — what work this configuration is for. One sentence.",
+    "<b>Audience</b> — who reads the output and what they know.",
+    "<b>Standards</b> — tone, register, reading level, terminology, the house conventions.",
+    "<b>Default format</b> — structure and length, so it does not have to be restated in every prompt.",
+    "<b>Prohibitions</b> — the things that must never happen. These are the highest-value lines in the whole set, because they encode the actual risk.",
+    "<b>Uncertainty handling</b> — what to do when the knowledge does not cover something. \"Say the documents do not address this rather than inferring\" is one line that prevents a whole class of Domain 2 failure.",
+    "What does not belong: reference material, background, anything relevant to only some conversations, and anything you cannot test."]},
+{h:"Short, prioritised, non-contradictory",
+ p:["Long instruction sets are less reliable than short ones. Every additional line dilutes the others, and past a certain length adherence becomes uneven in ways that are hard to predict or debug.",
+    "So put the most important directions first, particularly the prohibitions. Cut anything that is merely nice. If a rule matters only occasionally, it is a prompt-level instruction rather than a standing one.",
+    "Check for contradictions, which creep in as instructions are edited over months. \"Be comprehensive\" and \"keep responses under 200 words\" cannot both be satisfied, and the result is unpredictable resolution rather than a sensible compromise. Where two directions genuinely conflict, state the priority explicitly: \"if brevity and completeness conflict, prefer completeness and say what was cut.\"",
+    "Resolve tension deliberately rather than leaving it for the model to arbitrate. That is the difference between a configuration and a wish list."]},
+{h:"Test, then fix the instruction rather than the output",
+ p:["An untested instruction set is a set of intentions. Testing means running several real tasks — including awkward ones — and checking each standard specifically, rather than reading the output and feeling satisfied.",
+    "Test the prohibitions hardest. Ask something that invites the forbidden behaviour and confirm it does not happen. A prohibition that has never been tested against pressure has not been established.",
+    "When an output is wrong, the reflex is to correct it in the conversation. In a configured Project the better move is to ask whether the instruction should change — a correction you make repeatedly is a missing instruction. This is exactly the Domain 7 pattern of turning a fix into a default, and Project instructions are where it lands.",
+    "Keep a short record of why each instruction exists. In six months someone will want to remove a line that looks arbitrary, and the reason it was added will not be obvious from the line itself."]}
+],
+table: {cap:"Weak instruction to strong",
+ head:["Weak","Strong","Why it works"],
+ rows:[
+ ["Be concise","Under 150 words unless asked otherwise","Testable against any output"],
+ ["Be accurate","Answer only from the uploaded policies; if not covered, say so","Names a source and a fallback"],
+ ["Be professional","Plain English, second person, no internal jargon","Specific and checkable"],
+ ["Use our style guide","Sentence case headings; British spelling; no exclamation marks","Operative rules, not a pointer"],
+ ["Be careful with figures","Never state a refund amount or commit to a timeline","A prohibition, which is what risk needs"]]},
+keyc: "After writing any instruction, ask how you would tell whether it had been followed. If you cannot answer that, the instruction cannot be relied on and cannot be debugged — rewrite it until you can.",
+traps: [
+ {t:"Aspirational instructions",
+  p:"'Be helpful, accurate and professional' changes nothing measurable. Options offering this kind of set are weaker than options with specific, testable directions."},
+ {t:"Ever-growing instruction sets",
+  p:"Adding a line for every problem produces dilution and contradiction. The strong answer prioritises, cuts, and resolves conflicts explicitly."},
+ {t:"Correcting in conversation instead of in configuration",
+  p:"A correction you find yourself making repeatedly is a missing instruction. Options that fix the output rather than the configuration are weaker for recurring work."}
+],
+check: {
+ q: "A Project's instructions have grown to two pages over eight months as team members added rules. Outputs now follow some standards inconsistently, and two instructions — \"provide comprehensive background for every recommendation\" and \"keep all responses under 250 words\" — cannot both be met. What is the best approach?",
+ o: [
+ {t:"Add a further instruction telling Claude to prioritise brevity when the two conflict.", c:false, w:"Better than nothing, but leaves two pages of dilution untouched and treats the symptom rather than the accumulation."},
+ {t:"Rewrite the set: keep only rules that must apply every time, order prohibitions first, resolve the conflict explicitly, move reference content to knowledge, and test against real tasks.", c:true, w:"Addresses the actual causes — accumulation, dilution and unresolved contradiction — and verifies the result rather than assuming it."},
+ {t:"Split into two Projects so each instruction set is shorter.", c:false, w:"Splitting is right when the work differs, not as a way to manage instruction bloat within one coherent scope."},
+ {t:"Move to a more capable model, which will follow longer instruction sets more reliably.", c:false, w:"Does not resolve a genuine contradiction, and treats a configuration problem as a capability one."}],
+ key: "Instruction sets accumulate and need periodic rewriting, not just additions. Contradictions must be resolved by stating a priority, not left for the model to arbitrate."},
+ex: {
+ mins: 20,
+ title: "Rewrite an instruction set to be testable",
+ obj: ["Convert aspirational lines into checkable directions",
+       "Find and resolve a contradiction",
+       "Test the prohibitions under pressure"],
+ steps: [
+ {s:"Take an existing instruction set — yours or one you write quickly for real recurring work.", why:"Real sets contain the vagueness that invented ones do not.", res:"A starting set, probably with several untestable lines."},
+ {s:"Mark every line you could not check against an output. Rewrite each as something testable, or delete it.", why:"This single pass usually halves the length and doubles the effect.", res:"A shorter, checkable set."},
+ {s:"Reorder so prohibitions and the highest-risk directions come first.", why:"Order matters under dilution, and prohibitions encode the actual risk.", res:"Risk-first ordering."},
+ {s:"Look for two lines that cannot both be satisfied. Resolve the conflict by stating a priority.", why:"Unresolved conflicts produce unpredictable behaviour that looks like unreliability.", res:"An explicit priority rule."},
+ {s:"Test each prohibition by asking something that invites the forbidden behaviour.", why:"An untested prohibition has not been established, and this is the test people skip.", res:"Either confirmation or a prohibition to strengthen."},
+ {s:"Add a one-line note beside each instruction saying why it exists.", why:"In six months someone will want to delete a line whose reason is not obvious from the line.", res:"A set that survives staff changes."}]},
+src: [
+ {t:"Prompt engineering — system prompts", u:"https://docs.claude.com/en/docs/build-with-claude/prompt-engineering/system-prompts"},
+ {t:"Claude Help Center — Projects and custom instructions", u:"https://support.claude.com"},
+ {t:"Be clear, direct, and detailed", u:"https://docs.claude.com/en/docs/build-with-claude/prompt-engineering/be-clear-and-direct"}]
+};
+
+LESSONS["5.4"] = {
+mins: 20,
+sum: "Configurations rot. Ownership, a review rhythm, change triggers and telling users what changed are what keep a Project trustworthy over time.",
+know: [
+{h:"Configurations decay",
+ p:["A Project that was correct when it was built will be wrong within a year, without anyone doing anything careless. Policies change and the knowledge base still holds the old one. Products change and the specifications are stale. The team's standards move and the instructions do not. People join and leave, and access reflects an old roster.",
+    "The failure mode is quiet. Outputs remain fluent and confident while being grounded in superseded material, which makes decay considerably more dangerous than an outright break — a broken configuration gets fixed, a stale one gets trusted.",
+    "The exam's framing is that maintenance is part of the configuration, not a separate activity. A Project with no named owner and no review rhythm is incomplete however well it was set up."]},
+{h:"Ownership and rhythm",
+ p:["<b>A named owner.</b> One person accountable for whether the configuration is current. Shared ownership across a team means nobody notices, and \"the team owns it\" is the exam's signal for an unmaintained configuration.",
+    "<b>A review rhythm</b> proportionate to how fast the underlying material moves. Quarterly suits most; monthly for fast-moving product material; annually for stable reference. The specific interval matters less than that one exists and is diarised rather than intended.",
+    "<b>Change triggers</b> that force a review regardless of the calendar: a policy update, a product release, a regulatory change, a team restructure, a member joining or leaving, or a pattern of user complaints about output quality.",
+    "That last trigger is worth taking seriously. Complaints about a Project's outputs are usually reported as \"Claude is getting worse,\" and are usually a stale knowledge base or an instruction set that no longer matches how the team works."]},
+{h:"What a review covers",
+ p:["A useful review runs through five things, and takes less time than people expect once it is routine.",
+    "<b>Knowledge currency.</b> Is every document current? Anything superseded is removed, not merely supplemented — supplementing is how contradictions get in.",
+    "<b>Instruction fit.</b> Do the standing directions still match how the team works? Are there corrections people now make by hand every time, which should become instructions?",
+    "<b>Access.</b> Who is in the Project, who has left, and what does everything connected to it still reach?",
+    "<b>Connector scope.</b> Is each connection still needed, and still at the minimum scope? Scope set for an old purpose usually outlives it.",
+    "<b>Actual output quality.</b> Run several real tasks and check against the standards. This catches the drift that inspecting the configuration alone will not."]},
+{h:"Telling people what changed",
+ p:["A configuration change alters behaviour for everyone using the Project, often without warning. Someone who relied on a default format will find it changed and will not know why. Someone who worked around an old limitation will keep working around a limitation that no longer exists.",
+    "So changes to a shared configuration need to be communicated: what changed, why, and what users should do differently. It is a short note, and it is the difference between a maintained Project and one people quietly stop trusting.",
+    "Keep a simple change record — date, what changed, why, who made it. It is what lets you answer \"why does it do that?\" months later, and in a regulated setting it may be required.",
+    "Where a change is significant — a materially different instruction set, a new connected source — tell people before it takes effect rather than after. And for anything touching what data the Project can reach, that notice is a governance obligation as much as a courtesy."]}
+],
+table: {cap:"Triggers that force a review",
+ head:["Trigger","What to check first"],
+ rows:[
+ ["Policy or regulation changes","Knowledge currency — remove the superseded version"],
+ ["Product or service release","Specifications and examples in knowledge"],
+ ["Someone joins or leaves","Membership, and everything connected sources reach"],
+ ["Team restructure or scope change","Whether the Project's purpose is still coherent"],
+ ["Users report declining quality","Stale knowledge and instruction fit, before anything else"],
+ ["Recurring manual corrections","A missing instruction that should be added"],
+ ["Nothing — the calendar","Everything, quarterly"]]},
+keyc: "A stale configuration is more dangerous than a broken one. Broken gets fixed; stale keeps producing fluent, confident output grounded in superseded material, and keeps being trusted.",
+traps: [
+ {t:"No named owner",
+  p:"'The team maintains it' is the exam's signal for an unmaintained configuration. Strong answers name one accountable person."},
+ {t:"Adding the new version without removing the old",
+  p:"Superseded documents left in place produce intermittently wrong citations — right most of the time, which defeats spot-checking. Replace, do not supplement."},
+ {t:"Changing a shared configuration silently",
+  p:"Options that update instructions or add a connected source without telling users are weaker. Behaviour changed for everyone; they need to know what and why."}
+],
+check: {
+ q: "Users of a shared compliance Project report that \"Claude has got worse\" over the past two months — answers feel less reliable, though nobody can point to a specific error. Nothing about the configuration has been changed in that time. What should be investigated first?",
+ o: [
+ {t:"The model tier, since capability may have changed with a product update.", c:false, w:"Speculative, and does not explain a gradual decline in a Project whose material is likely to have moved."},
+ {t:"Whether the knowledge base has gone stale — regulations or internal policies updated without the Project's documents being replaced — and whether the instructions still match how the team now works.", c:true, w:"Nothing changing in the configuration is exactly the condition for decay: the world moved and the Project did not."},
+ {t:"Ask users to provide specific examples before investigating anything.", c:false, w:"Reasonable to gather, but the described pattern already points at decay, and waiting for a specific error in compliance work is the wrong risk posture."},
+ {t:"Rebuild the Project from scratch to eliminate accumulated problems.", c:false, w:"Discards working configuration and institutional knowledge in response to an undiagnosed complaint."}],
+ key: "\"Nothing has changed\" in a Project whose subject matter moves is the definition of decay. Vague reports of declining quality are the classic signal."},
+ex: {
+ mins: 20,
+ title: "Put one Project on a maintenance footing",
+ obj: ["Assign ownership and a diarised rhythm",
+       "Run a full review once so it becomes routine",
+       "Practise communicating a change to users"],
+ steps: [
+ {s:"Name the owner of a Project you use. If it is not you, agree it with them explicitly.", why:"An owner who has not agreed to be one is not an owner.", res:"One named, informed person."},
+ {s:"Set a review interval matched to how fast the underlying material moves, and put it in a calendar.", why:"An interval that is intended rather than diarised does not happen.", res:"A recurring entry with the checklist attached."},
+ {s:"Run the five-point review now: knowledge currency, instruction fit, access, connector scope, output quality.", why:"Doing it once establishes how long it takes, which is usually less than people fear.", res:"A list of changes, typically including one removal."},
+ {s:"Remove — do not supplement — anything superseded.", why:"Supplementing is how a knowledge base ends up contradicting itself.", res:"A knowledge base with one authoritative version per topic."},
+ {s:"Write the change note: what changed, why, what users should do differently.", why:"Practising the note makes it a habit rather than an afterthought.", res:"A short message you would actually send."},
+ {s:"Start a change record with today's entry.", why:"It is what answers 'why does it do that?' in six months, and may be required in a regulated setting.", res:"A running record with one line in it."}]},
+src: [
+ {t:"Claude Help Center — Projects and connectors", u:"https://support.claude.com"},
+ {t:"Anthropic usage policy", u:"https://www.anthropic.com/legal/aup"},
+ {t:"Anthropic Academy", u:"https://anthropic.skilljar.com"}]
+};

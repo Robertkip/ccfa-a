@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Learn — CCAO-F Study Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="shell">
+  <aside class="side">
+    <a class="brand" href="index.html"><span class="code">CCAO-F</span><span class="nm">Claude Certified Associate — Foundations</span></a>
+    <a class="side-cta" id="resume-cta" href="lesson.html?t=1.1">Start lesson 1.1</a>
+    <div id="side-progress"></div>
+    <h3>Curriculum</h3>
+    <ul id="side-domains"></ul>
+    <h3>Practice</h3>
+    <ul>
+      <li><a class="nav" href="exam.html?paper=a30">Practice Paper A · 30</a></li>
+      <li><a class="nav" href="exam.html?paper=b30">Practice Paper B · 30</a></li>
+      <li><a class="nav" href="exam.html?paper=c60">Mock Exam 1 · 60</a></li>
+      <li><a class="nav" href="exam.html?paper=d60">Mock Exam 2 · 60</a></li>
+    </ul>
+    <h3>Look up</h3>
+    <ul><li><a class="nav" href="resources.html">Learning resources</a></li></ul>
+    <p class="foot">Independent study material. Not affiliated with Anthropic.</p>
+  </aside>
+
+  <main class="main">
+    <p class="eyebrow">Curriculum</p>
+    <h1>Learn</h1>
+    <p class="lede">Thirty lessons, one for every task statement in the CCAO-F blueprint. Each teaches the idea, names the wrong answers the examiner reuses, checks your understanding, and gives you something to do with it at work.</p>
+    <p class="body">Work them in blueprint order or start with your weakest domains from a practice paper. Every lesson carries a key concept, a comparison table, three exam traps, a check question with rationales for each option, and a hands-on exercise. Progress is saved in this browser only — it is not sent anywhere and will not follow you to another device.</p>
+
+    <dl class="facts">
+      <div class="fact"><dt>Lessons</dt><dd>30</dd></div>
+      <div class="fact"><dt>Domains</dt><dd>7</dd></div>
+      <div class="fact"><dt>Completed</dt><dd id="f-done">—</dd></div>
+      <div class="fact"><dt>Reading</dt><dd id="f-read">—</dd></div>
+      <div class="fact"><dt>Exercises</dt><dd id="f-exm">—</dd></div>
+      <div class="fact"><dt>Bank items</dt><dd id="f-bank">—</dd></div>
+    </dl>
+
+    <div class="lgrid" id="lgrid"></div>
+
+    <h2 class="sec">How the lessons and the papers fit together</h2>
+    <ol class="objs">
+      <li>Sit <a href="exam.html?paper=a30">Practice Paper A</a> cold. Ignore the score; take the domain breakdown.</li>
+      <li>Work the lessons for your two weakest domains, doing the exercises rather than only reading.</li>
+      <li>Drill that domain's bank items on its <a href="index.html">domain page</a> until the rationales stop surprising you.</li>
+      <li>Sit <a href="exam.html?paper=b30">Practice Paper B</a>. A domain still under 70% is a conceptual gap, not carelessness.</li>
+      <li>Work the remaining lessons in blueprint order, heaviest domains first.</li>
+      <li>Sit <a href="exam.html?paper=c60">Mock Exam 1</a> under real conditions, then <a href="exam.html?paper=d60">Mock Exam 2</a> as a final rehearsal.</li>
+    </ol>
+
+    <h2 class="sec">Reset progress</h2>
+    <p class="body">Clears every completion mark in this browser. The lessons themselves are unaffected.</p>
+    <button class="btn ghost sm" id="reset">Reset all progress</button>
+
+    <p class="note"><b>Not affiliated with Anthropic.</b> The domain names, weights and task statements are taken from the published Claude Certified Associate — Foundations exam guide. The lessons and practice items are independent study material written against that blueprint, not real exam content. Product behaviour and model specifications change; confirm anything specific against Anthropic's own documentation.</p>
+  </main>
+</div>
+
+<script src="assets/data.js"></script>
+<script src="assets/curriculum.js"></script>
+<script src="assets/lessons-d1.js"></script>
+<script src="assets/lessons-d2.js"></script>
+<script src="assets/lessons-d3.js"></script>
+<script src="assets/lessons-d4.js"></script>
+<script src="assets/lessons-d5.js"></script>
+<script src="assets/lessons-d6.js"></script>
+<script src="assets/lessons-d7.js"></script>
+<script src="assets/bank-d1.js"></script>
+<script src="assets/bank-d2.js"></script>
+<script src="assets/bank-d3.js"></script>
+<script src="assets/bank-d4.js"></script>
+<script src="assets/bank-d5.js"></script>
+<script src="assets/bank-d6.js"></script>
+<script src="assets/bank-d7.js"></script>
+<script src="assets/learn.js"></script>
+<script>
+function totalMins(f){ return TASK_KEYS.reduce(function(a,n){ return a + f(LESSONS[n]); }, 0); }
+
+function paint() {
+  var g = progressFor(), prog = progressRead();
+
+  document.getElementById("f-done").innerHTML = g.done + " <small>of 30</small>";
+  document.getElementById("f-read").innerHTML = Math.round(totalMins(function(L){return L.mins;}) / 60) + " <small>hrs</small>";
+  document.getElementById("f-exm").innerHTML = Math.round(totalMins(function(L){return L.ex.mins;}) / 60) + " <small>hrs</small>";
+  document.getElementById("f-bank").innerHTML = DOM_KEYS.reduce(function(a,k){ return a + (BANK[k]||[]).length; }, 0);
+
+  document.getElementById("lgrid").innerHTML = DOM_KEYS.map(function (k) {
+    var d = DOMAINS[k], p = progressFor(k), tasks = domainTasks(k);
+    return '<section class="lblock" id="' + k + '">' +
+      '<div class="lblock-head">' +
+        '<h2><span class="ix">' + d.i + '</span>' + d.n + '</h2>' +
+        '<span class="lblock-meta"><b>' + d.w + '%</b> · ' + tasks.length + ' lessons · ' + p.done + '/' + p.total + ' done</span>' +
+      '</div>' +
+      '<p class="lblock-desc">' + d.d + '</p>' +
+      '<div class="lblock-bar"><i style="width:' + p.pct + '%"></i></div>' +
+      '<div class="mods">' + tasks.map(function (n) {
+        var L = LESSONS[n], done = prog[n] === true;
+        return '<a class="mod ' + (done ? "done" : "") + '" href="lesson.html?t=' + n + '">' +
+          '<span class="box">✓</span>' +
+          '<span><span class="tn">' + n + '</span>' +
+          '<span class="tt">' + taskTitle(n) + '</span>' +
+          '<span class="tm">' + L.mins + ' min read · ' + L.ex.mins + ' min exercise</span></span></a>';
+      }).join("") + '</div>' +
+    '</section>';
+  }).join("");
+
+  /* resume at the first incomplete lesson */
+  var nextUp = TASK_KEYS.find(function (n) { return !prog[n]; });
+  var cta = document.getElementById("resume-cta");
+  if (nextUp) {
+    cta.href = "lesson.html?t=" + nextUp;
+    cta.textContent = (g.done ? "Resume at " : "Start lesson ") + nextUp;
+  } else {
+    cta.href = "exam.html?paper=c60";
+    cta.textContent = "All 30 done — sit Mock 1";
+  }
+
+  renderLearnSide(null);
+}
+
+document.getElementById("reset").onclick = function () {
+  if (confirm("Clear all 30 completion marks in this browser?")) { progressReset(); paint(); }
+};
+
+paint();
+if (location.hash) {
+  var el = document.querySelector(location.hash);
+  if (el) el.scrollIntoView();
+}
+</script>
+</body>
+</html>

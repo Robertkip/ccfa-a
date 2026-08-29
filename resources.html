@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Learning resources — CCAO-F Study Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="shell">
+  <aside class="side">
+    <a class="brand" href="index.html"><span class="code">CCAO-F</span><span class="nm">Claude Certified Associate — Foundations</span></a>
+    <a class="side-cta" href="exam.html?paper=a30">Take a practice paper</a>
+    <h3>Study</h3>
+    <ul>
+      <li><a class="nav" href="learn.html">All 30 lessons</a></li>
+    </ul>
+    <h3>Curriculum</h3>
+    <ul id="side-domains"></ul>
+    <h3>Practice</h3>
+    <ul>
+      <li><a class="nav" href="exam.html?paper=a30">Practice Paper A · 30</a></li>
+      <li><a class="nav" href="exam.html?paper=b30">Practice Paper B · 30</a></li>
+      <li><a class="nav" href="exam.html?paper=c60">Mock Exam 1 · 60</a></li>
+      <li><a class="nav" href="exam.html?paper=d60">Mock Exam 2 · 60</a></li>
+    </ul>
+    <h3>Look up</h3>
+    <ul>
+      <li><a class="nav on" href="resources.html">Learning resources</a></li>
+      <li><a class="nav" href="resources.html#plan">Six-week study plan</a></li>
+    </ul>
+    <p class="foot">Independent study material. Not affiliated with Anthropic.</p>
+  </aside>
+
+  <main class="main">
+    <p class="eyebrow">Reference</p>
+    <h1>Learning resources</h1>
+    <p class="lede">Start with the official exam guide and Anthropic's own free training. Everything else on this page is supplementary, and community material should never be your only source for a fact about the exam.</p>
+
+    <h2 class="sec">Official and primary sources</h2>
+    <ul class="res">
+      <li><span class="src official">Official · start here</span>
+        <a href="https://www.pearsonvue.com/us/en/anthropic.html">Claude Certification Program — Pearson VUE</a>
+        <p>Where the exam is delivered and scheduled, online-proctored or at a test centre. Covers the three certification roles, the Credly badging arrangement, and the rescheduling rules. Registration itself runs through the Anthropic Partner Academy.</p></li>
+      <li><span class="src official">Official</span>
+        <a href="https://anthropic.skilljar.com">Anthropic Academy — free course catalogue</a>
+        <p>The free training catalogue behind the certification program. For the Associate track the relevant courses are the AI fluency material, Claude 101 on the product side, and anything covering Projects, artifacts and responsible use. The developer-heavy courses on the API and MCP are aimed at the Developer and Architect tracks, not this one.</p></li>
+      <li><span class="src official">Official</span>
+        <a href="https://docs.claude.com/en/docs/build-with-claude/prompt-engineering/overview">Prompt engineering overview — Anthropic docs</a>
+        <p>The primary reference behind Domain 1. Written for developers, but the techniques — being explicit, giving examples, letting the model reason before it concludes — are exactly what the Associate exam tests in a business framing.</p></li>
+      <li><span class="src official">Official</span>
+        <a href="https://support.claude.com">Claude Help Center</a>
+        <p>The authoritative source for product behaviour: Projects, artifacts, research mode, connectors, and the privacy and data-handling articles that sit behind Domains 5 and 6. If a community guide contradicts this, this wins.</p></li>
+      <li><span class="src official">Official</span>
+        <a href="https://www.anthropic.com/news">Anthropic news</a>
+        <p>Worth a skim before you sit. Product features move, and an exam guide effective July 2026 can describe a product surface that has since changed.</p></li>
+    </ul>
+
+    <h2 class="sec">Reading mapped to each domain</h2>
+    <p class="body">The exam guide lists task statements but not sources. This is a practical mapping of where to read for each domain, in study order. Each domain also has its own <a href="learn.html">written lessons</a> on this site — one per task statement — which is the faster route if you would rather study than read source documentation.</p>
+    <div id="map"></div>
+
+    <h2 class="sec">Community study material</h2>
+    <p class="body">Independent resources, none affiliated with Anthropic. Useful for structure and repetition; check any specific exam fact against the official guide before relying on it.</p>
+    <ul class="res">
+      <li><span class="src community">Community</span>
+        <a href="https://claudecertificationguide.com/ccao-f">Claude Certification Guide — CCAO-F blueprint</a>
+        <p>A clean restatement of the published blueprint with all seven domain weights, exam facts and retake rules. The structural model this study site follows.</p></li>
+      <li><span class="src community">Community</span>
+        <a href="https://tutorialsdojo.com/ccao-f-claude-certified-associate-foundations-study-guide/">Tutorials Dojo — CCAO-F study guide</a>
+        <p>Domain-by-domain study guide with a feature checklist and preparation strategy. Tutorials Dojo also sells practice exams for this track.</p></li>
+      <li><span class="src community">Community</span>
+        <a href="https://ravikirans.com/claude-certified-associate-foundations-study-guide/">Ravikiran Srinivasulu — CCAO-F study guide</a>
+        <p>Maps every blueprint objective to a specific page in Anthropic's own documentation, so you can study from primary sources rather than someone's summary. The most useful of the community guides if you like reading source material.</p></li>
+      <li><span class="src community">Community</span>
+        <a href="https://flashgenius.net/guides/claude-certified-associate-foundations-ccao-f-2026-interactive-guide">FlashGenius — CCAO-F interactive guide</a>
+        <p>Domain blueprint, a six-week plan, common mistakes and a short readiness quiz. Good for a quick self-assessment of where you stand.</p></li>
+      <li><span class="src community">Community</span>
+        <a href="https://www.certsafari.com/anthropic/claude-certified-architect">CertSafari — free sample questions</a>
+        <p>Free practice items across the Claude certification family, with rationales and no signup. Their Associate set is smaller than their Architect set.</p></li>
+    </ul>
+
+    <h2 class="sec" id="plan">Six-week study plan</h2>
+    <p class="body">Assumes you already use Claude for work a few times a week. If you do not, add two weeks of simply using it on real tasks before you start — this exam is difficult to pass on theory alone.</p>
+    <ul class="objs">
+      <li><b>Week 1 — Diagnose.</b> Read the official exam guide end to end. Sit Practice Paper A cold, without studying. Ignore the score; write down your two weakest domains from the report.</li>
+      <li><b>Week 2 — The heavy domain.</b> Output Evaluation is 21% of the exam, more than any other. Work its <a href="learn.html#d2">six lessons</a>, then its 38 bank items in drill mode, and read the Help Center articles on how Claude handles sources and uncertainty.</li>
+      <li><b>Week 3 — Prompting and troubleshooting.</b> Domains 1 and 7 together are 24% and share a mental model: diagnose before you correct. Work the <a href="learn.html#d1">four Domain 1 lessons</a> and the <a href="learn.html#d7">three Domain 7 lessons</a>, read the prompt engineering overview, then drill both domains.</li>
+      <li><b>Week 4 — Product, configuration, workflow.</b> Domains 3, 4 and 5 are 40% combined and are the most product-specific. Work their <a href="learn.html#d3">thirteen lessons</a> and do the exercises rather than only reading — build a real Project with instructions and knowledge as you go, because the questions are much easier once you have configured one.</li>
+      <li><b>Week 5 — Governance and full rehearsal.</b> Work the <a href="learn.html#d6">four Domain 6 lessons</a>, then sit Mock Exam 1 under real conditions: 120 minutes, one sitting, no notes, no interruptions.</li>
+      <li><b>Week 6 — Close the gaps and rehearse again.</b> Review every incorrect item and read the rationales for options you did not choose. Sit Practice Paper B and Mock Exam 2. Book the real exam when both papers clear 80%.</li>
+    </ul>
+
+    <h2 class="sec">Before you book</h2>
+    <ul class="objs">
+      <li>Confirm the current exam guide version. Domain weights, fees and policies can change without notice, and this site was built against v1.0 effective July 2026.</li>
+      <li>Check your registration route. Registration runs through the Anthropic Partner Academy, which is oriented to Claude Partner Network member organisations — confirm you have access before planning a sitting date.</li>
+      <li>Decide test centre or online proctored. Online proctoring has room, equipment and identity requirements worth reading in advance rather than on the day.</li>
+      <li>Note the retake rules: waiting periods of 14, 30 and 90 days after failed attempts, up to four attempts in a rolling twelve months, with the fee payable each time.</li>
+      <li>Diarise renewal. The credential is valid for 12 months and on-time renewal is a non-proctored assessment; letting it lapse means sitting the full exam again at full fee.</li>
+    </ul>
+
+    <p class="note"><b>Not affiliated with Anthropic.</b> Exam facts on this page come from the published Claude Certified Associate — Foundations exam guide (v1.0, effective July 2026) and from Pearson VUE. Anthropic can revise the blueprint, fee and policies at any time, so treat the official guide as authoritative and this page as a map to it.</p>
+  </main>
+</div>
+
+<script src="assets/data.js"></script>
+<script>
+document.getElementById("side-domains").innerHTML = DOM_KEYS.map(function(k){
+  return '<li><a class="nav" href="domain.html?d='+k+'"><span class="idx">'+DOMAINS[k].i+'</span>'+DOMAINS[k].n+'</a></li>';
+}).join("");
+
+var MAP = {
+ d1:"Anthropic's prompt engineering overview, particularly being explicit, using examples, and asking for reasoning before conclusions. Then practise on real work: the exam scenarios are business tasks, not puzzles.",
+ d2:"Help Center articles on how Claude handles sources and uncertainty, plus anything on artifacts and when to use them. The judgement half of this domain comes from practice — draft something, then try to find what is wrong with it.",
+ d3:"Help Center documentation on Projects, artifacts and research mode, and Anthropic's model overview for what distinguishes Haiku, Sonnet and Opus. Focus on the trade-off framing rather than memorising specifications.",
+ d4:"No single document covers this. Anthropic's guidance on effective use plus your own experience of a real process. If you have never mapped a workflow before, that gap will show in these items.",
+ d5:"Help Center articles on Projects, custom instructions, knowledge files and connectors. Configure a Project yourself and put the wrong thing in the wrong place once — it makes the distinction permanent.",
+ d6:"Anthropic's usage policy and the Help Center privacy and data-handling articles, alongside your own organisation's AI policy if one exists. The exam expects a general governance instinct, not a specific jurisdiction's law.",
+ d7:"The prompt engineering overview again, read as a troubleshooting reference. The optimisation half overlaps with Domain 4 and is best learned by improving something you actually run."
+};
+document.getElementById("map").innerHTML = DOM_KEYS.map(function(k){
+  var d = DOMAINS[k];
+  return '<div class="rev-item" style="padding:16px 0"><span class="rev-mark" style="color:var(--dropout)">Domain '+d.i+' · '+d.w+'% · '+d.n+'</span>'+
+    '<p class="body" style="margin:8px 0 0">'+MAP[k]+'</p>'+
+    '<p class="body" style="margin:6px 0 0"><a href="learn.html#'+k+'">'+d.o.length+' lessons →</a>  ·  '+
+    '<a href="domain.html?d='+k+'">Drill this domain →</a></p></div>';
+}).join("");
+</script>
+</body>
+</html>
